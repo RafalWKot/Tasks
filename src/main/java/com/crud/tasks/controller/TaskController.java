@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/v1/task")
 public class TaskController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
+    @RequestMapping(method = RequestMethod.GET)
     public List<TaskDto> getTasks() {
         return new ArrayList<>();
     }
@@ -22,14 +22,14 @@ public class TaskController {
         return new TaskDto(1L, "test title", "test content");
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
+    @RequestMapping(method = RequestMethod.DELETE)
     public void deleteTask(Long taskId) {}
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
+    @RequestMapping(method = RequestMethod.PUT)
     public TaskDto updateTask(TaskDto taskDto) {
-        return new TaskDto(1L, "Edited test title", "Test conrent");
+        return new TaskDto(1L, "Edited test title", "Test content");
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createTask")
+    @RequestMapping(method = RequestMethod.POST)
     public void createTask(TaskDto taskDto){}
 }
