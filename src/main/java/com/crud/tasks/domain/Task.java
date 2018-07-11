@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Tasks {
+public class Task {
     private Long id;
     private String title;
     private String content;
