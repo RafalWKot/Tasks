@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/tasks")
 public class TaskController {
@@ -23,6 +24,7 @@ public class TaskController {
     public List<TaskDto> getTasks() {
         return  taskMapper.mapToTaskDtoList(service.getAllTask());
     }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/{taskId}")
     public TaskDto getTask(@PathVariable("taskId") Long taskId) throws TaskNotFoundException {
