@@ -13,7 +13,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/tasks")
+@RequestMapping("/v1/tasks/")
 public class TaskController {
     @Autowired
     private DbService service;
@@ -27,12 +27,12 @@ public class TaskController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{taskId}")
+    @RequestMapping(method = RequestMethod.GET, value = "{taskId}")
     public TaskDto getTask(@PathVariable("taskId") Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(service.getTask(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{taskId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "{taskId}")
     public void deleteTask(@PathVariable("taskId") Long taskId) {
         service.deleteTask(taskId);
     }
