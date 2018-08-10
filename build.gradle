@@ -28,13 +28,24 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile("org.projectlombok:lombok:1.16.18")
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+	//Engines for DataBases
 	compile('mysql:mysql-connector-java')
 	//compile('org.postgresql:postgresql')
+
+	//Adnotation Lombok
+	compile("org.projectlombok:lombok:1.16.18")
+
+	//Swagger for Api Documentation
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
+
+	//For Mail Client
+	compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
 }
