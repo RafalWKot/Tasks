@@ -14,7 +14,7 @@ public class TasksApplication {
 
 	}
 
-//	@Override	//dla WAR lokaln serwer tomcat
+//	@Override	//dla WAR lokalny serwer tomcat
 //	protected SpringApplicationBuilder configure( SpringApplicationBuilder application) {
 //		return application.sources(TasksApplication.class);
 //	}
