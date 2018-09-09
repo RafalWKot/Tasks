@@ -9,11 +9,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 @SpringBootApplication
 //public class TasksApplication extends SpringBootServletInitializer {  // dla WAR lokalny serwer tomcat
 public class TasksApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(TasksApplication.class, args);
-
-	}
-
+	public static void main(String[] args) { SpringApplication.run(TasksApplication.class, args); }
 //	@Override	//dla WAR lokalny serwer tomcat
 //	protected SpringApplicationBuilder configure( SpringApplicationBuilder application) {
 //		return application.sources(TasksApplication.class);
