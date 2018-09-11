@@ -6,11 +6,11 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
-import org.hamcrest.Matchers;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Null;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -27,9 +27,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -83,13 +81,13 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$[0].content", is("My new task.")));
     }
 
-    @Test
-    public void testGetTaskEmpty() throws Exception{ //jak zrobić test na wyjątek
+    @Test(expected = Exception.class)
+    public void testGetTaskEmpty() throws Exception{
         //Given
 
         //When & Then
-        when(dbService.getTask(Mockito.any())).thenReturn(Optional.of(null));
-        when(taskMapper.mapToTaskDto(Mockito.any())).thenThrow(TaskNotFoundException.class);
+        when(dbService.getTask(Mockito.any())).thenReturn(Optional.empty());
+
 
         mockMvc.perform(get("/v1/task/getTask?taskId=1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError());
@@ -113,8 +111,12 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void testDeleteTask() {
+    public void testDeleteTask() throws Exception{
+        //Given
 
+        //When & Then
+        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -136,7 +138,6 @@ public class TaskControllerTest {
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk());
-
     }
 
     @Test
