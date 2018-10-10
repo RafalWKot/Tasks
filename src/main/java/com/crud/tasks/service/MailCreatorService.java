@@ -10,6 +10,8 @@ import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MailCreatorService {
@@ -41,5 +43,21 @@ public class MailCreatorService {
         context.setVariable("is_friend", true);
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
+    }
+
+    public String buildGetAllTasksEmail(String message) {
+
+        List<Task> tasks = dbService.getAllTask();
+
+        Context context = new Context();
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("preview_message", "This is list of all your tasks.");
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "http://localhost:8888/tasks_frontend");
+        context.setVariable("button", "Visit website");
+        context.setVariable("goodbye_message", "The message has been generated automatically, please do not reply to it.");
+        context.setVariable("show_button", false);
+        context.setVariable("tasks", tasks);
+        return templateEngine.process("mail/get-all-tasks-mail", context);
     }
 }
