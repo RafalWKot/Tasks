@@ -26,11 +26,11 @@ public class SimpleEmailService {
         LOGGER.info("Starting email preparation..");
         try {
             //Task module
-//            SimpleMailMessage mailMessage = createMailMessage(mail);
-//            javaMailSender.send(mailMessage);
+            SimpleMailMessage mailMessage = createMailMessage(mail);
+            javaMailSender.send(mailMessage);
 
             //Task module 24.1 / 24.2
-            javaMailSender.send(createMimeMessage(mail));
+            //javaMailSender.send(createMimeMessage(mail));
 
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
